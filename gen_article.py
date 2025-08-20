@@ -38,7 +38,7 @@ with open(f'articles/{date}-{num}.html', 'w', encoding='utf-8') as f:
     <title>Article {num} {niche.capitalize()}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CODE}" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-placeholder" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: {niche_colors.get(niche, '#28a745')};">
@@ -59,7 +59,7 @@ with open(f'articles/{date}-{num}.html', 'w', encoding='utf-8') as f:
         {content}
         <ins class="adsbygoogle"
              style="display:block"
-             data-ad-client="{ADSENSE_CODE}"
+             data-ad-client="ca-pub-placeholder"
              data-ad-slot="0987654321"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
