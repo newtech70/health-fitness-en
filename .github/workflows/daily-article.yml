@@ -1,23 +1,24 @@
-
 name: Daily Article
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      AFFILIATE_ID: ${{ secrets.AFFILIATE_ID }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-        with: python-version: '3.8'
+        with:
+          python-version: '3.8'
       - run: pip install google-generativeai
       - run: python gen_article.py
       - run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
           git add .
-          git commit -m "Nouvel article quotidien"
+          git commit -m "Nouvel article immédiat"
           git push
-    env:
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      AFFILIATE_ID: ${{ secrets.AFFILIATE_ID }}
