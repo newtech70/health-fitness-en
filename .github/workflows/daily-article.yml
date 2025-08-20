@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.8'
       - run: pip install --upgrade pip
-      - run: pip install google-generativeai==0.8.3
+      - run: pip install google-generativeai==0.8.5
       - run: python gen_article.py
         continue-on-error: true
       - run: |
