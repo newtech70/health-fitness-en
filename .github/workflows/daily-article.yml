@@ -10,15 +10,17 @@ jobs:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       AFFILIATE_ID: ${{ secrets.AFFILIATE_ID }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
-      - run: pip install google-generativeai
+      - run: pip install --upgrade pip
+      - run: pip install google-generativeai==0.8.3
       - run: python gen_article.py
+        continue-on-error: true
       - run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
           git add .
-          git commit -m "Nouvel article immédiat"
+          git commit -m "Nouvel article immédiat" || echo "No changes to commit"
           git push
