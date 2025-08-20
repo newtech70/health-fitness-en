@@ -9,7 +9,9 @@ unsplash_key = os.environ['UNSPLASH_ACCESS_KEY']
 
 # Extraire niche et langue
 repo_name = os.environ.get('GITHUB_REPOSITORY', 'newtech70/health-fitness-en').split('/')[-1]
-niche, lang = repo_name.split('-')
+parts = repo_name.split('-')
+niche = '-'.join(parts[:-1])  # Handle multi-part niche names
+lang = parts[-1]
 
 # Couleurs niches
 niche_colors = {
@@ -43,7 +45,7 @@ def get_unsplash_images(niche, num=5):
                 urls.append('https://via.placeholder.com/300x200')
         except:
             urls.append('https://via.placeholder.com/300x200')
-        time.sleep(1)
+        time.sleep(2)
     return urls
 
 # Contenu statique
@@ -99,8 +101,8 @@ content = '''
 images = get_unsplash_images(niche)
 
 # Sauvegarder article
-date = datetime.date.today().strftime("%Y-%m-%d")
-num = len([f for f in os.listdir('articles') if f.endswith('.html')]) + 1
+date = datetime.today().strftime("%Y-%m-%d")
+num = 1
 os.makedirs('articles', exist_ok=True)
 with open(f'articles/{date}-{num}.html', 'w', encoding='utf-8') as f:
     f.write(f'''<!DOCTYPE html>
